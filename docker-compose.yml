@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: quizdb
+      POSTGRES_USER: quizuser
+      POSTGRES_PASSWORD: quizpass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: gunicorn QuizDRF.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_NAME=quizdb
+      - DB_USER=quizuser
+      - DB_PASSWORD=quizpass
+      - DB_HOST=db
+      - DB_PORT=5432
+
+volumes:
+  postgres_data:
