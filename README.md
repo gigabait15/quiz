@@ -17,7 +17,7 @@
 
 1. **Клонируйте репозиторий и перейдите в каталог проекта:**
    ```bash
-   git clone <repo_url>
+   git clone [<repo_url>](https://github.com/gigabait15/quiz.git)
    cd QuizDRF
    ```
 
